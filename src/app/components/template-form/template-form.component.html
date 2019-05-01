@@ -1,0 +1,114 @@
+
+<div class="container" [style.margin-top.px] = "15">
+
+<div class="row">
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Template Driven Form </h3>
+          </div>
+          <div class="panel-body">
+              <form #frmUser="ngForm" autocomplete="false" (ngSubmit)="onSubmit(frmUser)" novalidate>
+                <div class="form-group">
+                  <label for="">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="txtUsername"
+                    minlength="3"
+                    maxlength="20"
+                    required="required"
+                    pattern=""
+                    [(ngModel)]="user.username"
+                    #username="ngModel">
+                </div>
+                <span class="label label-danger"
+                *ngIf="username.errors?.required">
+                Vui lòng nhập username
+              </span>
+              <span class="label label-danger"
+                *ngIf="username.errors?.minlength">
+                Vui lòng nhập min 3 ký tự
+              </span>
+              <span class="label label-danger"
+                *ngIf="username.errors?.maxlength">
+                Vui lòng nhập max 20 ký tự
+            </span>
+
+                <div class="form-group">
+                  <label for="">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    [(ngModel)]="user.password"
+                    name="txtPassword"
+                    #password="ngModel"
+                    required="required"
+                    minlength="5"
+                    >
+                </div>
+                <span class="label label-danger"
+                *ngIf="password.errors?.required">
+                Vui lòng nhập password
+              </span>
+              <span class="label label-danger"
+                *ngIf="password.errors?.minlength">
+                Vui lòng nhập min 5 ký tự
+              </span>
+
+                <div class="form-group">
+                  <label for="">Fullname</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="user.fullname"
+                    name="txtFullname"
+                    required="required"
+                    minlength="3"
+                    maxlength="20"
+                    #fullname="ngModel">
+                </div>
+                <span class="label label-danger"
+                  *ngIf="fullname.dirty && fullname.errors?.required">
+                  Vui lòng nhập fullname
+                </span>
+
+                <div class="form-group">
+                  <label for="">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    [(ngModel)]="user.email"
+                    name="txtEmail"
+                    pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}{a-zA-Z}{2,}"
+                    #email="ngModel">
+                </div>
+                <span class="label label-danger"
+                  *ngIf="email.dirty && email.errors?.pattern">
+                  Vui lòng nhập đúng định dạng email
+                </span>
+
+
+                <div class="form-group">
+                  <label for="">Phone : </label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="user.phone"
+                    name="txtPhone"
+                    #phone="ngModel">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-right:15px">Lưu</button>
+                <button type="button" class="btn btn-primary" (click)="onResetForm(frmUser)">Làm lại</button>
+
+              </form>
+
+          </div>
+      </div>
+
+  </div>
+
+</div>
+
+</div>
